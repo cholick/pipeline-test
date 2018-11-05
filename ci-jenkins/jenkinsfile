@@ -37,7 +37,9 @@ pipeline {
             steps {
                 unstash 'binaries'
                 sh '''
-                    #export GITHUB_TOKEN=
+                    ls pipeline-test
+                    #todo: GITHUB_TOKEN=
+                    #todo: version in Github repo? Figure out how to exclude from trigger (https://issues.jenkins-ci.org/browse/JENKINS-36195)
 
                     git tag ${VERSION} && git push --tags
                     github-release release --user cholick --repo pipeline-test --tag ${VERSION} --name "${VERSION}"

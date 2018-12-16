@@ -1,0 +1,15 @@
+kind: pipeline
+name: default
+
+- name: backend
+  image: golang
+  commands:
+  - |
+    go get github.com/onsi/ginkgo/ginkgo
+    go get github.com/onsi/gomega
+    mkdir -p /go/src/github.com/cholick
+    cp -r pipeline-test /go/src/github.com/cholick
+    cd /go/src/github.com/cholick/pipeline-test
+
+    make test
+    make build
